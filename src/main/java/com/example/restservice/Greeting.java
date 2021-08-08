@@ -1,20 +1,18 @@
-package com.example.restservice;
+package com.example.messagingstompwebsocket;
 
 public class Greeting {
 
-	private final long id;
-	private final String content;
+  private String content;
 
-	public Greeting(long id, String content) {
-		this.id = id;
-		this.content = content;
-	}
+  public Greeting() {
+  }
 
-	public long getId() {
-		return id;
-	}
+  public Greeting(String content) {
+    this.content = content;
+  }
 
-	public String getContent() {
-		return content;
-	}
+  public String getContent() {
+    return content;
+  }
+
 }

@@ -1,26 +1,19 @@
-package com.example.restservice;
+package com.example.messagingstompwebsocket;
 
-import java.util.concurrent.atomic.AtomicLong;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.util.HtmlUtils;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
+@Controller
 public class GreetingController {
 
-	private static final String template = "Goodbye, %s!";
-	private final AtomicLong counter = new AtomicLong();
 
-	@GetMapping("/api/greeting")
-	public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
-		System.out.println("here we go, in greeting");
-		return new Greeting(counter.incrementAndGet(), String.format(template, name));
-	}
+  @MessageMapping("/hello")
+  @SendTo("/topic/greetings")
+  public Greeting greeting(HelloMessage message) throws Exception {
+    Thread.sleep(1000); // simulated delay
+    return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
+  }
 
-	// @GetMapping("/")
-	// public Greeting home(@RequestParam(value = "name", defaultValue = "home") String name) {
-	// 	System.out.println("here we go, in home");
-	// 	return new Greeting(counter.incrementAndGet(), String.format(template, name));
-	// }
 }
