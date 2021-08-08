@@ -20,7 +20,8 @@ jobs:
         run: yarn build
 
       - name: Put bundle in server
-        run: cp -R /app/build /src/main/resources/static
+        working-directory: ./
+        run: cp -R app/build src/main/resources/static/
 
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
