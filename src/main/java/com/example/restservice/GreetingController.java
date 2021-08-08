@@ -9,11 +9,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class GreetingController {
 
-	private static final String template = "Hello, %s!";
+	private static final String template = "Goodbye, %s!";
 	private final AtomicLong counter = new AtomicLong();
 
 	@GetMapping("/greeting")
 	public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
+		System.out.println("here we go, in greeting");
+		return new Greeting(counter.incrementAndGet(), String.format(template, name));
+	}
+
+	@GetMapping("/")
+	public Greeting home(@RequestParam(value = "name", defaultValue = "home") String name) {
+		System.out.println("here we go, in home");
 		return new Greeting(counter.incrementAndGet(), String.format(template, name));
 	}
 }
