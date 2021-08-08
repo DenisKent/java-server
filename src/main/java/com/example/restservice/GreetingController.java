@@ -12,7 +12,7 @@ public class GreetingController {
 	private static final String template = "Goodbye, %s!";
 	private final AtomicLong counter = new AtomicLong();
 
-	@GetMapping("/greeting")
+	@GetMapping("/api/greeting")
 	public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
 		System.out.println("here we go, in greeting");
 		return new Greeting(counter.incrementAndGet(), String.format(template, name));
