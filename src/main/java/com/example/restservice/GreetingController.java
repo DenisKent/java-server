@@ -18,9 +18,9 @@ public class GreetingController {
 		return new Greeting(counter.incrementAndGet(), String.format(template, name));
 	}
 
-	@GetMapping("/")
-	public Greeting home(@RequestParam(value = "name", defaultValue = "home") String name) {
-		System.out.println("here we go, in home");
-		return new Greeting(counter.incrementAndGet(), String.format(template, name));
-	}
+	// @GetMapping("/")
+	// public Greeting home(@RequestParam(value = "name", defaultValue = "home") String name) {
+	// 	System.out.println("here we go, in home");
+	// 	return new Greeting(counter.incrementAndGet(), String.format(template, name));
+	// }
 }
